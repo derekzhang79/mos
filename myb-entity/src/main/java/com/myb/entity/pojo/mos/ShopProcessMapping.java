@@ -2,7 +2,7 @@ package com.myb.entity.pojo.mos;
 
 public class ShopProcessMapping {
 
-	public final static String Id = "id";
+    public final static String Id = "id";
     public final static String ShopId = "shopId";
     public final static String IsEscort = "isEscort";
     public final static String ClientLevel = "clientLevel";
@@ -13,5 +13,6 @@ public class ShopProcessMapping {
     public final static String Amount = "amount";
     public final static String FinishTime = "finishTime";
     public final static String EmployeeId = "employeeId";
+    public final static String Note = "note";
 
 }

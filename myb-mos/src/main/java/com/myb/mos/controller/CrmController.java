@@ -3,14 +3,12 @@ package com.myb.mos.controller;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.myb.accounts.service.*;
-import com.myb.entity.pojo.mos.Args;
-import com.myb.entity.pojo.mos.CrmUserinfo;
-import com.myb.entity.pojo.mos.Employee;
-import com.myb.entity.pojo.mos.OpenAccount;
+import com.myb.entity.pojo.mos.*;
 import com.myb.framework.data.PagedList;
 import com.myb.framework.data.QueryParameter;
 import com.myb.mos.VO.CrmUserinfoVO;
 import com.myb.mos.VO.ExcelAreaCustomerVO;
+import com.myb.mos.enums.StatusEnum;
 import com.myb.mos.utils.BaseProUtill;
 import com.myb.mos.utils.HttpClientUtil;
 import com.myb.mos.utils.ListSort;
@@ -54,6 +52,15 @@ public class CrmController {
 
 	@Autowired
 	private CrmVisitrecordService crmVisitrecordService;
+
+	@Autowired
+	private ShopContactService shopContactService;
+
+	@Autowired
+	private ShopProcessService shopProcessService;
+
+	@Autowired
+	private FreshShopService freshShopService;
 
 	/**
 	 * @return
@@ -120,7 +127,7 @@ public class CrmController {
 	@ResponseBody
 	@RequestMapping(value="/showListCustomer")
 	public ModelAndView showListCustomer(HttpServletRequest request, HttpServletResponse response,@RequestParam(value="pageIndex",defaultValue="1") int pageIndex){
-		ModelAndView mav = new ModelAndView("/customerVisit/CustomerVisitList");
+		ModelAndView mav = new ModelAndView("/customerVisit/CustomerManageList");
 		Map<String, String> map = new HashMap<String, String>();
 		String area = "1";
 		if (pageIndex <= 0) {
@@ -235,6 +242,29 @@ public class CrmController {
 		}
 	}
 
+	/**
+	 * 获取客户信息
+	 * @param shopId
+     * @return
+     */
+	@RequestMapping("queryCustomerInfo")
+	public ModelAndView queryCustomerInfo(Integer shopId,HttpServletRequest request){
+		ModelAndView mav = new ModelAndView("/customerVisit/privateCustomerInfo");
+		try {
+			mav.addObject("contact", shopContactService.searchList(new QueryParameter().eq("shopId", shopId)).get(0));
+			FreshShop freshShop = freshShopService.searchById(shopId);
+			if(freshShop.getIsPublic()== StatusEnum.isPublicStatusEnum.PRIVATE_SEA.getCode()){
+				mav.addObject("process", shopProcessService.searchList(new QueryParameter().eq("shopId", shopId)).get(0));
+				mav.addObject("emp",crmUserinfoService.searchList(new QueryParameter().eq("empId",freshShop.getEmployeeId())).get(0));
+			}
+			mav.addObject("fresh", freshShop);
+			Employee employee = (Employee)request.getSession().getAttribute("loginUser");
+			mav.addObject("visitTimes",crmVisitrecordService.searchList(new QueryParameter().eq("employeeId", employee.getEmpId()).and().eq("shopId", shopId)).size());
+		} catch (Exception e){
+		} finally {
+			return mav;
+		}
+	}
 
 	@RequestMapping(value="/crmVisitRecode",method = {RequestMethod.POST,RequestMethod.GET})
 	public ModelAndView crmVisitRecode(HttpServletRequest request, HttpServletResponse response, @RequestParam(value="pageIndex",defaultValue="1") int pageIndex){
@@ -363,7 +393,8 @@ public class CrmController {
 			for (Integer str : setByShopId) {
 				if (str == visitrecords.get(f).getShopId()) {
 					int shopCount = visitrecords.parallelStream().filter(e->e.getShopId()==str).collect(Collectors.toList()).size();
-					int shopValideCount = visitrecords.parallelStream().filter(e->e.getIsValide()==0 && e.getShopId()==str).collect(Collectors.toList()).size();
+					int shopValideCount = visitrecords.parallelStream().filter(e->e.getIsValide()==0 && e.getShopId()==str)
+							.collect(Collectors.toList()).size();
 					visitrecords.get(f).setShopAllCount(shopCount);
 					visitrecords.get(f).setShopValideCount(shopValideCount);
 

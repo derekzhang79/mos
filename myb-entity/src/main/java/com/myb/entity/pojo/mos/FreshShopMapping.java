@@ -20,4 +20,21 @@ public class FreshShopMapping {
     public final static String CreateTime = "createTime";
     public final static String Latitude = "latitude";
     public final static String Longitude = "longitude";
+    public final static String EmployeeName = "employeeName";
+    public final static String CName = "cName";
+    public final static String PName = "pName";
+    public final static String IsOtherApp = "isOtherApp";
+    public final static String OtherAppName = "otherAppName";
+    public final static String IsFreeVersion = "isFreeVersion";
+    public final static String OpenAccount = "openAccount";
+    public final static String BossName = "bossName";
+    public final static String Scale = "scale";
+    public final static String ClientLevel = "clientLevel";
+    public final static String Duty = "duty";
+    public final static String DutyName = "dutyName";
+    public final static String Mobile = "mobile";
+    public final static String Wechat = "wechat";
+    public final static String Remark = "remark";
+    public final static String Reason = "reason";
+
 }

@@ -12,17 +12,17 @@ public class CrmVisitrecord extends EntityBase{
     @DataMapping(CrmVisitrecordMapping.ShopId)
     private long shopId;//
     @DataMapping(CrmVisitrecordMapping.ClientName)
-    private java.lang.String clientName;//拜访的客户名
+    private String clientName;//拜访的客户名
     @DataMapping(CrmVisitrecordMapping.PicUrl)
-    private java.lang.String picUrl;//
+    private String picUrl;//
     @DataMapping(CrmVisitrecordMapping.VisitTime)
-    private java.lang.String visitTime;//拜访日期
+    private String visitTime;//拜访日期
     @DataMapping(CrmVisitrecordMapping.ClientLevel)
-    private java.lang.String clientLevel;//客户状态（ABCD）
+    private String clientLevel;//客户状态（ABCD）
     @DataMapping(CrmVisitrecordMapping.Longitude)
-    private java.lang.String longitude;//
+    private String longitude;//
     @DataMapping(CrmVisitrecordMapping.Latitude)
-    private java.lang.String latitude;//
+    private String latitude;//
     @DataMapping(CrmVisitrecordMapping.ContractId)
     private long contractId;//联系人id
     @DataMapping(CrmVisitrecordMapping.IsEscort)
@@ -32,15 +32,15 @@ public class CrmVisitrecord extends EntityBase{
     @DataMapping(CrmVisitrecordMapping.EmployeeId)
     private long employeeId;//
     @DataMapping(CrmVisitrecordMapping.Remark)
-    private java.lang.String remark;//
+    private String remark;//
     @DataMapping(CrmVisitrecordMapping.CreateTime)
     private java.sql.Timestamp createTime;//
     @DataMapping(CrmVisitrecordMapping.Isdel)
     private int isdel;//记录是否有效
     @DataMapping(CrmVisitrecordMapping.Address)
-    private java.lang.String address;//
+    private String address;//
     @DataMapping(CrmVisitrecordMapping.EmpName)
-    private java.lang.String empName;//
+    private String empName;//
     @DataMapping(CrmVisitrecordMapping.IsBoss)
     private int isBoss;//0:见过老板
 
@@ -65,57 +65,57 @@ public class CrmVisitrecord extends EntityBase{
     {
         this.shopId = shopId;
     }
-    public java.lang.String getClientName()
+    public String getClientName()
     {
         return clientName;
     }
 
-    public void setClientName(java.lang.String clientName)
+    public void setClientName(String clientName)
     {
         this.clientName = clientName;
     }
-    public java.lang.String getPicUrl()
+    public String getPicUrl()
     {
         return picUrl;
     }
 
-    public void setPicUrl(java.lang.String picUrl)
+    public void setPicUrl(String picUrl)
     {
         this.picUrl = picUrl;
     }
-    public java.lang.String getVisitTime()
+    public String getVisitTime()
     {
         return visitTime;
     }
 
-    public void setVisitTime(java.lang.String visitTime)
+    public void setVisitTime(String visitTime)
     {
         this.visitTime = visitTime;
     }
-    public java.lang.String getClientLevel()
+    public String getClientLevel()
     {
         return clientLevel;
     }
 
-    public void setClientLevel(java.lang.String clientLevel)
+    public void setClientLevel(String clientLevel)
     {
         this.clientLevel = clientLevel;
     }
-    public java.lang.String getLongitude()
+    public String getLongitude()
     {
         return longitude;
     }
 
-    public void setLongitude(java.lang.String longitude)
+    public void setLongitude(String longitude)
     {
         this.longitude = longitude;
     }
-    public java.lang.String getLatitude()
+    public String getLatitude()
     {
         return latitude;
     }
 
-    public void setLatitude(java.lang.String latitude)
+    public void setLatitude(String latitude)
     {
         this.latitude = latitude;
     }
@@ -155,12 +155,12 @@ public class CrmVisitrecord extends EntityBase{
     {
         this.employeeId = employeeId;
     }
-    public java.lang.String getRemark()
+    public String getRemark()
     {
         return remark;
     }
 
-    public void setRemark(java.lang.String remark)
+    public void setRemark(String remark)
     {
         this.remark = remark;
     }
@@ -183,21 +183,21 @@ public class CrmVisitrecord extends EntityBase{
     {
         this.isdel = isdel;
     }
-    public java.lang.String getAddress()
+    public String getAddress()
     {
         return address;
     }
 
-    public void setAddress(java.lang.String address)
+    public void setAddress(String address)
     {
         this.address = address;
     }
-    public java.lang.String getEmpName()
+    public String getEmpName()
     {
         return empName;
     }
 
-    public void setEmpName(java.lang.String empName)
+    public void setEmpName(String empName)
     {
         this.empName = empName;
     }
